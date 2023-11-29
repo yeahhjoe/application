@@ -1,8 +1,10 @@
 package Application;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import Application.Inventory.InventoryItem;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseConnection {
     // This method connects to the database in the program
@@ -17,6 +19,29 @@ public class DatabaseConnection {
         }
 
         return con;
+    }
+
+    public static List<InventoryItem> getInventoryItems(){
+        List<InventoryItem> inventoryItems = new ArrayList<>();
+
+        try(Connection con = connect();
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Inventory")){
+
+            while (resultSet.next()){
+                InventoryItem item = new InventoryItem();
+                item.setName(resultSet.getString("name"));
+                item.setPrice(resultSet.getDouble("price"));
+                item.setDescription(resultSet.getString("description"));
+                item.setImageBlob(resultSet.getBlob("inventoryImage"));
+
+                inventoryItems.add(item);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return inventoryItems;
     }
 
 

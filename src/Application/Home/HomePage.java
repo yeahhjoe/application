@@ -1,6 +1,7 @@
 package Application.Home;
 
 import Application.Account.AccountPage;
+import Application.Inventory.InventoryPage;
 import Application.Login.LoginPage;
 
 import javax.swing.*;
@@ -65,6 +66,13 @@ public class HomePage {
         // Account Button
         accountButton.addActionListener(e ->{
             AccountPage.createAndShowGUI();
+            LoginPage.closePage(homePageFrame);
+        });
+
+
+        // Inventory Button
+        checkInventoryButton.addActionListener(e ->{
+            InventoryPage.createAndShowGUI();
             LoginPage.closePage(homePageFrame);
         });
 
