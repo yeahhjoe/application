@@ -1,17 +1,22 @@
 package Application;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountPage {
-    private JPanel panel1;
+    private JPanel accountPanel;
     private JLabel accountLabel;
     private JLabel detailLabel;
     private JLabel usernameLabel;
     private JLabel accountTypeLabel;
+    private JButton goBackToHomeButton;
+    private JLabel appName;
+
+    public static JFrame accountPageFrame;
 
     // Check if the user is an admin
     public static boolean isAdmin(int userId) {
@@ -48,16 +53,40 @@ public class AccountPage {
     }
 
 
+
     AccountPage(){
         usernameLabel.setText("<html> <font size = '5'> Username: " + LoginPage.currentUsername+ "</font></html>");
 
         // Checks if the user is admin or not
         if(isAdmin(LoginPage.currentUserId)){
-            accountLabel.setText("<html><font size = '5'> Account Type: Admin</font></html>");
+            accountTypeLabel.setText("<html><font size = '5'> Account Type: Admin</font></html>");
         }else{
-            accountLabel.setText("<html><font size = '5'> Account Type: User</font></html>");
+            accountTypeLabel.setText("<html><font size = '5'> Account Type: User</font></html>");
         }
 
+        goBackToHomeButton.addActionListener(e ->{
+            HomePage.createAndShowGUI();
+            LoginPage.closePage(accountPageFrame);
+        });
 
+
+    }
+
+    public static void createAndShowGUI(){
+        // Set up the main frame
+        accountPageFrame = new JFrame("Login Page");
+        accountPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        accountPageFrame.setSize(1300, 700);
+
+        accountPageFrame.getContentPane().setBackground(Color.WHITE);
+
+        // Create an instance of GUI class
+        AccountPage accountPage = new AccountPage();
+
+        // Set up the layout and add components
+        accountPageFrame.add(accountPage.accountPanel, BorderLayout.CENTER);
+
+        // Make the frame visible
+        accountPageFrame.setVisible(true);
     }
 }

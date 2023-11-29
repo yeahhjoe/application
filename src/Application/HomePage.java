@@ -60,11 +60,10 @@ public class HomePage {
 
         creatorsLabel.setText("<html> <font size = '4'> Application made by: Heriberto Contreas, Joseph Ohanu, Adam Tucker, Joshua Watson </font></html>");
 
-
-
         // Account Button
         accountButton.addActionListener(e ->{
-
+            AccountPage.createAndShowGUI();
+            LoginPage.closePage(homePageFrame);
         });
 
     }
