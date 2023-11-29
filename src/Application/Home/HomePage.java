@@ -1,7 +1,9 @@
-package Application;
+package Application.Home;
+
+import Application.Account.AccountPage;
+import Application.Login.LoginPage;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -94,5 +96,7 @@ public class HomePage {
         // Make the frame visible
         homePageFrame.setVisible(true);
     }
+
+
 
 }

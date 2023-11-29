@@ -1,4 +1,7 @@
-package Application;
+package Application.SignUp;
+
+import Application.DatabaseConnection;
+import Application.Login.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;

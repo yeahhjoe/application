@@ -1,4 +1,8 @@
-package Application;
+package Application.Login;
+
+import Application.DatabaseConnection;
+import Application.Home.HomePage;
+import Application.SignUp.SignUpPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static Application.HomePage.homePageFrame;
 
 
 public class LoginPage {

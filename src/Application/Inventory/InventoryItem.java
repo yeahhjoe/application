@@ -1,4 +1,4 @@
 package Application.Inventory;
 
-public interface InventoryItem {
+public class InventoryItem {
 }

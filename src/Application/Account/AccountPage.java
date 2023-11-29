@@ -1,4 +1,8 @@
-package Application;
+package Application.Account;
+
+import Application.DatabaseConnection;
+import Application.Home.HomePage;
+import Application.Login.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;
