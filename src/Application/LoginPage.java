@@ -21,6 +21,8 @@ public class LoginPage {
     private JLabel loginLabel;
     private JLabel doNotHaveAccountLabel;
 
+    public static int currentUserId;
+
     // TODO: Checks if there is a match in the database and log the user in
     public static boolean userExistInDatabase(String username, String password) {
         Connection connection = null;
@@ -42,6 +44,7 @@ public class LoginPage {
 
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
+                currentUserId = resultSet.getInt("UserId");
                 return count == 1; // Return true if exactly one match is found
             }
 
@@ -71,7 +74,7 @@ public class LoginPage {
 
 
     public static String currentUsername;
-    public static String currentPassword;
+
 
 
     public LoginPage() {
@@ -83,28 +86,10 @@ public class LoginPage {
 
             // keeps track of current user
             currentUsername = username;
-            currentPassword = password;
+
 
             if (userExistInDatabase(username, password)) {
-                // Log the User in
-                homePageFrame = new JFrame("Home Page");
-                homePageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                homePageFrame.setSize(1300, 700);
-
-                homePageFrame.getContentPane().setBackground(Color.WHITE);
-
-                // Create an instance of GUI class
-
-                HomePage homePage = new HomePage();
-
-
-                // Set up the layout and add components
-                homePageFrame.add(homePage.getHomePagePanel(), BorderLayout.CENTER);
-
-
-
-                // Make the frame visible
-                homePageFrame.setVisible(true);
+                HomePage.createAndShowGUI();
                 closePage(loginPageFrame);
             } else {
                 JOptionPane.showMessageDialog(loginPageFrame, "User does not exist!");
@@ -113,20 +98,7 @@ public class LoginPage {
 
         // TODO: When this button is clicked it generates a new Sign-Up page window
         signUpButton.addActionListener(e -> {
-            // Set up the main frame
-            SignUpPage.signUpPageFrame = new JFrame("Sign Up Page");
-            SignUpPage.signUpPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            SignUpPage.signUpPageFrame.setSize(1300, 700);
-
-            // Create an instance of GUI class
-            SignUpPage signUpPage = new SignUpPage();
-
-            // Set up the layout and add components
-            SignUpPage.signUpPageFrame.add(signUpPage.getSignUpPanel(), BorderLayout.CENTER);
-
-            // Make the frame visible
-            SignUpPage.signUpPageFrame.setVisible(true);
-
+            SignUpPage.createAndShowGUI();
             // Close login page
             closePage(loginPageFrame);
 

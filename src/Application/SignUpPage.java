@@ -101,5 +101,23 @@ public class SignUpPage {
         signUpButton.setForeground(Color.GREEN);
 
 
+
+
+    }
+
+    public static void createAndShowGUI(){
+        // Set up the main frame
+        SignUpPage.signUpPageFrame = new JFrame("Sign Up Page");
+        SignUpPage.signUpPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        SignUpPage.signUpPageFrame.setSize(1300, 700);
+
+        // Create an instance of GUI class
+        SignUpPage signUpPage = new SignUpPage();
+
+        // Set up the layout and add components
+        SignUpPage.signUpPageFrame.add(signUpPage.getSignUpPanel(), BorderLayout.CENTER);
+
+        // Make the frame visible
+        SignUpPage.signUpPageFrame.setVisible(true);
     }
 }

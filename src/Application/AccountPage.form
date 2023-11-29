@@ -23,7 +23,7 @@
         </constraints>
         <properties>
           <font name="Andale Mono" size="14" style="0"/>
-          <text value="Details"/>
+          <text value="Details:"/>
         </properties>
       </component>
       <component id="93673" class="javax.swing.JLabel" binding="usernameLabel">
