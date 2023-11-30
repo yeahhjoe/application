@@ -1,8 +1,10 @@
 package Application.Home;
 
 import Application.Account.AccountPage;
+import Application.CheckOut.CheckOutPage;
 import Application.Inventory.InventoryPage;
 import Application.Login.LoginPage;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -91,6 +93,12 @@ public class HomePage {
         // Inventory Button
         checkInventoryButton.addActionListener(e ->{
             InventoryPage.createAndShowGUI();
+            LoginPage.closePage(homePageFrame);
+        });
+
+        shoppingCartButton.addActionListener(e -> {
+            CheckOutPage checkOutPage = new CheckOutPage(); //Can't make it static
+            checkOutPage.createAndShowGUI();
             LoginPage.closePage(homePageFrame);
         });
 
