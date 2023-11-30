@@ -24,9 +24,18 @@ public class CheckOutPage extends JPanel {
     private JTextField cardNumber;
     private JTextField expDate;
     private JTextField cvv;
+
+    public static JFrame checkOutPageFrame;
+
+    public static JPanel checkOutPanel;
     ButtonGroup shippingTypes = new ButtonGroup();
 
     public CheckOutPage(){
+
+
+        checkOutPageFrame = new JFrame();
+
+
         setPreferredSize(new Dimension(600, 400));
 
         //Picking the layout for the panel
@@ -43,6 +52,8 @@ public class CheckOutPage extends JPanel {
         profilePage = new JButton("Profile");
         topButtons.add(profilePage);
 
+
+
         //adding components to the bottom bar
         JPanel bottomButtons = new JPanel(new FlowLayout());
         freeShipping = new JRadioButton("Free Shipping");
@@ -56,6 +67,8 @@ public class CheckOutPage extends JPanel {
         bottomButtons.add(overNightShipping);
         next = new JButton("FINISH PAYMENT");
         bottomButtons.add(next);
+
+
 
         //Adding the Shipping Information
         JPanel centerFilloutForm = new JPanel(new GridBagLayout());
@@ -96,6 +109,8 @@ public class CheckOutPage extends JPanel {
         gbc.gridy = 7;
         centerFilloutForm.add(email, gbc);
 
+
+
         //Adding the Payment Information
         JPanel eastFilloutForm = new JPanel(new GridBagLayout());
         GridBagConstraints gbc2 = new GridBagConstraints();
@@ -112,8 +127,7 @@ public class CheckOutPage extends JPanel {
         gbc2.gridy = 2;
         eastFilloutForm.add(cvv, gbc2);
 
-
-
+        /*
         //Adding the sub Panel to main Panel
         cartInformation = new JTable();
         this.add(eastFilloutForm, BorderLayout.EAST);
@@ -122,6 +136,37 @@ public class CheckOutPage extends JPanel {
         this.add(topButtons, BorderLayout.NORTH);
         this.add(bottomButtons, BorderLayout.SOUTH);
 
+         */
+
+
+
+        // Adding components to checkOutPageFrame
+        checkOutPageFrame.add(topButtons, BorderLayout.NORTH);
+        checkOutPageFrame.add(bottomButtons, BorderLayout.SOUTH);
+        checkOutPageFrame.add(centerFilloutForm, BorderLayout.CENTER);
+        checkOutPageFrame.add(eastFilloutForm, BorderLayout.EAST);
+        checkOutPageFrame.add(cartInformation, BorderLayout.WEST);
+
+
+
+
+        // Set frame properties
+        checkOutPageFrame.setTitle("Checkout Page");
+        checkOutPageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        checkOutPageFrame.setSize(800, 600); // Set your preferred size
+        checkOutPageFrame.setLocationRelativeTo(null); // Center the frame on the screen
+
+        // Create an instance of your CheckOutPage
+
+
+        // Add CheckOutPage to the frame
+        checkOutPageFrame.setVisible(true);
+
+
+        // Make the frame visible
+        //setVisible(true);
+
     }
+
 
 }

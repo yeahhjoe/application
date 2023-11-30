@@ -25,7 +25,7 @@ public class HomePage {
     private JButton accountButton;
     private JLabel aboutUsLabel;
     private JLabel creatorsLabel;
-
+    private JScrollPane scrollPane;
 
 
     public static JFrame homePageFrame;
@@ -35,7 +35,14 @@ public class HomePage {
 
     HomePage() {
         // table data for homepage
-        DefaultTableModel model = (DefaultTableModel) exampleTable.getModel();
+
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        //DefaultTableModel model = (DefaultTableModel) exampleTable.getModel();
         Object[][] rowData = {
                 {"1:64", "Toyota", "Die-Cast Metal"},
                 {"1:43", "Audi", "Plastic"},
@@ -50,6 +57,17 @@ public class HomePage {
 
 
         model.setDataVector(rowData, columnNames);
+
+        exampleTable.setModel(model);
+        exampleTable.setRowHeight(50);
+
+        // Show column names
+        exampleTable.getTableHeader().setVisible(true);
+
+        // Set autoResizeMode to adjust columns to fit available space
+        exampleTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+
 
 
         // text for the labels on the bottom of the page

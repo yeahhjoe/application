@@ -2,11 +2,29 @@ package Application.Inventory;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.sql.Blob;
-import java.sql.SQLException;
 
 public class InventoryItem {
+
+    private String item;
+
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public JButton button;
+
+    public JButton getButton() {
+        return button;
+    }
+
+    public void setButton(JButton button) {
+        this.button = button;
+    }
+
     private String name;
     private String description;
     private double price;
@@ -62,21 +80,12 @@ public class InventoryItem {
 
     // Method to convert an InventoryItem to an Object array (for table model)
     public Object[] toObjectArray(){
-        return new Object[]{name, price, description};
+        return new Object[]{item, name, price, description};
     }
 
 
 }
 
-class ImageRenderer extends DefaultTableCellRenderer {
-    @Override
-    public Component getTableCellRendererComponent(
-            JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        JLabel label = new JLabel();
-        if (value instanceof ImageIcon imageIcon) {
-            label.setIcon(new ImageIcon(
-                    imageIcon.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
-        }
-        return label;
-    }
-}
+
+
+

@@ -79,21 +79,6 @@
                   <text value="Label"/>
                 </properties>
               </component>
-              <component id="cd837" class="javax.swing.JTable" binding="exampleTable">
-                <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <columnSelectionAllowed value="true"/>
-                  <font name="Andale Mono" size="16" style="0"/>
-                  <foreground color="-16718585"/>
-                  <rowSelectionAllowed value="false"/>
-                  <showHorizontalLines value="true"/>
-                  <updateSelectionOnSort value="false"/>
-                </properties>
-              </component>
               <component id="d724d" class="javax.swing.JTextField" binding="searchBar">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
@@ -136,6 +121,26 @@
                   <text value="Account"/>
                 </properties>
               </component>
+              <scrollpane id="81f24" binding="scrollPane">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Andale Mono" size="16" style="1"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="fa0db" class="javax.swing.JTable" binding="exampleTable">
+                    <constraints/>
+                    <properties>
+                      <foreground color="-16718585"/>
+                      <intercellSpacing width="10" height="10"/>
+                      <opaque value="false"/>
+                      <rowSelectionAllowed value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <grid id="c9c59" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
