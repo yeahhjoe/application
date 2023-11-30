@@ -19,6 +19,7 @@ public class SignUpPage {
     private JButton signUpButton;
     private JButton backToLoginPage;
     private JPanel signUpPanel;
+    private JTextField emailTextField;
 
     public static JFrame signUpPageFrame;
 
@@ -42,20 +43,20 @@ public class SignUpPage {
     }
 
     // TODO: Inserts user into database
-    public static void insertUser(String username, String password){
-        addUserToDatabaseHelper(username, password, false, DatabaseConnection.connect());
+    public static void insertUser(String email, String username, String password){
+        addUserToDatabaseHelper(email, username, password, false, DatabaseConnection.connect());
     }
 
 
     // TODO: Creates a new row in the database with the passed in values (sets isAdmin to false)
-    public static void addUserToDatabaseHelper(String username, String password, boolean isAdmin, Connection con){
+    public static void addUserToDatabaseHelper(String email,String username, String password, boolean isAdmin, Connection con){
         try{
-            String sql = "INSERT INTO User(username, password, isAdmin) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO User(username, password, isAdmin, email) VALUES(?, ?, ?,?)";
             try(PreparedStatement ps = con.prepareStatement(sql)){
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setBoolean(3, isAdmin);
-
+                ps.setString(4, email);
                 ps.execute();
             }
         }catch(SQLException e){
@@ -77,7 +78,7 @@ public class SignUpPage {
             String username = usernameTextField.getText();
             String password = passwordTextField.getText();
             String confirmPassword = confirmPasswordTextField.getText();
-
+            String email = emailTextField.getText();
             // Check if the password are valid
             if(!validPassword(password)){
                 JOptionPane.showMessageDialog(signUpPageFrame, "Password must be at least 6 characters!");
@@ -93,7 +94,7 @@ public class SignUpPage {
 
             // if the passwords are valid then add the user to the database
             if(validPassword(password) && confirmPasswordMatch(password, confirmPassword) && !userAlreadyExist(username, password)){
-                insertUser(username, password);
+                insertUser(email ,username, password);
                 JOptionPane.showMessageDialog(signUpPageFrame, "You're in the database!");
             }
 
@@ -123,4 +124,6 @@ public class SignUpPage {
         // Make the frame visible
         SignUpPage.signUpPageFrame.setVisible(true);
     }
+
+
 }
