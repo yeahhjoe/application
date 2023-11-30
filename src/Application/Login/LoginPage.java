@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class LoginPage {
+public class  LoginPage {
 
     private JPanel loginPanel;
     private JTextField usernameTextField;
