@@ -67,6 +67,7 @@ public class SignUpPage {
     }
 
     SignUpPage() {
+
         // When the back to login button is clicked it closes the sign-up page and renders the login page
         backToLoginPage.addActionListener(e -> {
             LoginPage.createAndShowGUI();
