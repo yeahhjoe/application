@@ -1,9 +1,13 @@
 package Application.CheckOut;
 
+import Application.Account.AccountPage;
+import Application.Home.HomePage;
+import Application.Login.LoginPage;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class CheckOutPage extends JPanel {
+public class CheckOutPage {
     private JLabel applicationTitle;
     private JButton homePage;
     private JButton aboutPage;
@@ -24,13 +28,24 @@ public class CheckOutPage extends JPanel {
     private JTextField cardNumber;
     private JTextField expDate;
     private JTextField cvv;
+    public JFrame checkOutPageFrame;
+    public JPanel checkoutPage;
+
     ButtonGroup shippingTypes = new ButtonGroup();
 
     public CheckOutPage(){
-        setPreferredSize(new Dimension(600, 400));
+
+    }
+    public void createAndShowGUI(){
+
+        checkOutPageFrame = new JFrame();
+        checkoutPage = new JPanel();
+        checkOutPageFrame.add(checkoutPage);
+
+        checkoutPage.setPreferredSize(new Dimension(1300, 700));
 
         //Picking the layout for the panel
-        this.setLayout(new BorderLayout());
+        checkoutPage.setLayout(new BorderLayout());
 
         //adding components to the top bar
         JPanel topButtons = new JPanel(new FlowLayout());
@@ -38,10 +53,22 @@ public class CheckOutPage extends JPanel {
         topButtons.add(applicationTitle);
         homePage = new JButton("Home");
         topButtons.add(homePage);
+        homePage.addActionListener(e -> {
+            HomePage.createAndShowGUI();
+            LoginPage.closePage(checkOutPageFrame);
+        });
         aboutPage = new JButton("About");
         topButtons.add(aboutPage);
+        aboutPage.addActionListener(e -> {
+            HomePage.createAndShowGUI();
+            LoginPage.closePage(checkOutPageFrame);
+        });
         profilePage = new JButton("Profile");
         topButtons.add(profilePage);
+        profilePage.addActionListener(e -> {
+            AccountPage.createAndShowGUI();
+            LoginPage.closePage(checkOutPageFrame);
+        });
 
         //adding components to the bottom bar
         JPanel bottomButtons = new JPanel(new FlowLayout());
@@ -56,6 +83,11 @@ public class CheckOutPage extends JPanel {
         bottomButtons.add(overNightShipping);
         next = new JButton("FINISH PAYMENT");
         bottomButtons.add(next);
+        next.addActionListener(e -> {
+            //action when pressed
+            int confirmation = confirmation();
+            //TODO if yes then invoice if no then nothing
+        });
 
         //Adding the Shipping Information
         JPanel centerFilloutForm = new JPanel(new GridBagLayout());
@@ -116,12 +148,19 @@ public class CheckOutPage extends JPanel {
 
         //Adding the sub Panel to main Panel
         cartInformation = new JTable();
-        this.add(eastFilloutForm, BorderLayout.EAST);
-        this.add(centerFilloutForm, BorderLayout.CENTER);
-        this. add(cartInformation, BorderLayout.WEST);
-        this.add(topButtons, BorderLayout.NORTH);
-        this.add(bottomButtons, BorderLayout.SOUTH);
+        checkoutPage.add(eastFilloutForm, BorderLayout.EAST);
+        checkoutPage.add(centerFilloutForm, BorderLayout.CENTER);
+        checkoutPage.add(cartInformation, BorderLayout.WEST);
+        checkoutPage.add(topButtons, BorderLayout.NORTH);
+        checkoutPage.add(bottomButtons, BorderLayout.SOUTH);
 
+        checkOutPageFrame.pack();
+        checkOutPageFrame.setVisible(true);
+
+    }
+
+    public int confirmation(){
+        return JOptionPane.showConfirmDialog(null, "Do you want to continue with this purchase?", "Confirmation", JOptionPane.YES_NO_OPTION);
     }
 
 }
