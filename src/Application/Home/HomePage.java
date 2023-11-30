@@ -1,6 +1,7 @@
 package Application.Home;
 
 import Application.Account.AccountPage;
+import Application.Cart.CartPage;
 import Application.CheckOut.CheckOutPage;
 import Application.Inventory.InventoryPage;
 import Application.Login.LoginPage;
@@ -21,8 +22,6 @@ public class HomePage {
     private JLabel leftCornerLabel;
     private JLabel middleBottomLabel;
     private JLabel bottomRightLabel;
-    private JTextField searchBar;
-    private JButton searchButton;
     private JButton shoppingCartButton;
     private JButton accountButton;
     private JLabel aboutUsLabel;
@@ -97,8 +96,9 @@ public class HomePage {
         });
 
         shoppingCartButton.addActionListener(e -> {
-            CheckOutPage checkOutPage = new CheckOutPage(); //Can't make it static
-            checkOutPage.createAndShowGUI();
+            //CheckOutPage checkOutPage = new CheckOutPage(); //Can't make it static
+            //checkOutPage.createAndShowGUI();
+            CartPage.createAndShowGUI();
             LoginPage.closePage(homePageFrame);
         });
 
