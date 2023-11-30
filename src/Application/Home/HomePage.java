@@ -102,6 +102,16 @@ public class HomePage {
             LoginPage.closePage(homePageFrame);
         });
 
+        // Search Button
+        searchButton.addActionListener(e ->{
+            String searchText = searchBar.getText().trim();
+            if(!searchText.equals("")) //Will not search if no text is entered
+            {
+                InventoryPage.createAndShowGUI();
+                LoginPage.closePage(homePageFrame);
+            }
+        });
+
     }
 
     public JPanel getHomePagePanel() {
