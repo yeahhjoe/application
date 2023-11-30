@@ -12,6 +12,19 @@ public class InventoryItem {
     private double price;
     private Blob imageBlob;
 
+    private byte[] imageBytes;
+
+    // ... other methods, getters, setters
+
+    public byte[] getImageBytes() {
+        return imageBytes;
+    }
+
+    public void setImageBytes(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -45,19 +58,11 @@ public class InventoryItem {
     }
 
     // method that converts the BLOB to ImageIcon
-    public ImageIcon getImageIcon(){
-        try{
-            byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
-            return new ImageIcon(imageBytes);
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+
 
     // Method to convert an InventoryItem to an Object array (for table model)
     public Object[] toObjectArray(){
-        return new Object[]{name, getImageIcon(), price, description};
+        return new Object[]{name, price, description};
     }
 
 

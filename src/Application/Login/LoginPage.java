@@ -36,7 +36,7 @@ public class LoginPage {
             connection = DatabaseConnection.connect();
 
             // SQL query to check if the username and password match
-            String query = "SELECT userId, COUNT(*) FROM User WHERE username = ? AND password = ?";
+            String query = "SELECT userId FROM User WHERE username = ? AND password = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -45,13 +45,10 @@ public class LoginPage {
             resultSet = preparedStatement.executeQuery();
 
 
-
-
             if (resultSet.next()) {
+                // Grab the userId and return true if user exist
                 currentUserId = resultSet.getInt("userId");
-                int count = resultSet.getInt(1);
-                //currentUserId = resultSet.getInt("UserId");
-                return count == 1; // Return true if exactly one match is found
+                return true;
             }
 
         } catch (SQLException e) {

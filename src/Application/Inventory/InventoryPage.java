@@ -1,19 +1,19 @@
 package Application.Inventory;
 
 import Application.DatabaseConnection;
-import Application.Home.HomePage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.IOException;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 
 public class InventoryPage {
     private JPanel inventoryPanel;
     private JTable inventoryTable;
+    private JLabel appName;
+    private JButton cartButton;
+    private JButton searchButton;
+    private JButton accountButton;
 
     public static JFrame inventoryPageJframe;
 
@@ -28,26 +28,19 @@ public class InventoryPage {
     private void initializeUI(List<InventoryItem> inventoryItems){
         Object[][] data = new Object[inventoryItems.size()][4];
 
-        for(int i = 0; i < inventoryItems.size(); i++){
-            InventoryItem item = inventoryItems.get(i);
-            data[i][0] = item.getName();
-            data[i][1] = item.getPrice();
-            data[i][2] = item.getDescription();
 
-            try{
-                Blob imageBlob = item.getImageBlob();
-                byte[] imageBytes = imageBlob.getBytes(1, (int) imageBlob.length());
-                ImageIcon imageIcon = new ImageIcon(imageBytes);
-                data[i][3] = imageIcon;
-
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-            }
-
-        }
         String[] columnNames = {"Name", "Price", "Description", "Image"};
 
-        model.setDataVector(data, columnNames);
+        model.addColumn("Name");
+        //model.addColumn("Image");
+        model.addColumn("Price");
+        model.addColumn("Description");
+
+        for(InventoryItem item: inventoryItems){
+            model.addRow(item.toObjectArray());
+        }
+
+        //inventoryTable.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
     }
 
 
@@ -55,10 +48,6 @@ public class InventoryPage {
 
 
     InventoryPage(){
-
-
-
-
 
         inventoryItems = DatabaseConnection.getInventoryItems();
 

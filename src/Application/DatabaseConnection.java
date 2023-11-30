@@ -33,7 +33,11 @@ public class DatabaseConnection {
                 item.setName(resultSet.getString("name"));
                 item.setPrice(resultSet.getDouble("price"));
                 item.setDescription(resultSet.getString("description"));
-                item.setImageBlob(resultSet.getBlob("inventoryImage"));
+
+
+
+                //byte[] imageBytes = resultSet.getBytes("inventoryImage");
+                //item.setImageBytes(imageBytes);
 
                 inventoryItems.add(item);
             }
